@@ -1,0 +1,19 @@
+﻿@model SecureFilesJoaoDias.Models.PdfViewModel
+
+<h2>Para mozao Amanda Dias ❤️</h2>
+
+<form asp-action="SecurePdf" asp-controller="Pdf" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label for="PdfFile">Select PDF:</label>
+        <input type="file" asp-for="PdfFile" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="OwnerPassword">Owner Password (For Permissions):</label>
+        <input type="password" asp-for="OwnerPassword" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="UserPassword">User Password (For Opening PDF):</label>
+        <input type="password" asp-for="UserPassword" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Secure PDF</button>
+</form>

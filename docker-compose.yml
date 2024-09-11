@@ -1,0 +1,18 @@
+services:
+  securefilesapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+    ports:
+      - "7923:8080" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    restart: always
+    networks:
+      - securefilesnet
+
+networks:
+  securefilesnet:
+    driver: bridge
