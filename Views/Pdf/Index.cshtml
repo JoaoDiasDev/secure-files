@@ -1,19 +1,43 @@
 ﻿@model SecureFilesJoaoDias.Models.PdfViewModel
 
-<h2>Para mozao Amanda Dias ❤️</h2>
+@{
+    ViewData["Title"] = "PDF";
+}
 
-<form asp-action="SecurePdf" asp-controller="Pdf" enctype="multipart/form-data" method="post">
-    <div class="form-group">
-        <label for="PdfFile">Select PDF:</label>
-        <input type="file" asp-for="PdfFile" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="OwnerPassword">Owner Password (For Permissions):</label>
-        <input type="password" asp-for="OwnerPassword" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="UserPassword">User Password (For Opening PDF):</label>
-        <input type="password" asp-for="UserPassword" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Secure PDF</button>
-</form>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Para mozao Amanda Dias ❤️</h2>
+
+    <!-- Animation Container -->
+    <div id="file-security-animation" class="d-flex justify-content-center my-4" style="width: 200px; height: 200px;"></div>
+
+    <form asp-action="SecurePdf" asp-controller="Pdf" enctype="multipart/form-data" method="post" class="bg-white p-4 rounded shadow-sm">
+        <div class="form-group">
+            <label for="PdfFile">Select PDF:</label>
+            <input type="file" asp-for="PdfFile" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="OwnerPassword">Owner Password (Para permissões):</label>
+            <input type="password" asp-for="OwnerPassword" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="UserPassword">User Password (Para abrir o PDF):</label>
+            <input type="password" asp-for="UserPassword" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Secure PDF</button>
+    </form>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        lottie.loadAnimation({
+            container: document.getElementById('file-security-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/animation/file-security.json'
+        });
+    });
+</script>

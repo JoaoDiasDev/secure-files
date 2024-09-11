@@ -1,22 +1,205 @@
+/* General Styles */
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+    a:hover {
+        color: #0056a3;
+    }
+
+/* Moving Background Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: url('path/to/your/background-image.jpg') repeat; /* Set path to your background image */
+    z-index: -1;
+    animation: moveBackground 30s linear infinite; /* Moving background */
+    opacity: 0.2; /* Set opacity for a subtle effect */
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1b6ec2;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    padding: 0.5rem 1rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+    animation: slideIn 0.5s ease-in-out forwards; /* Slide-in animation */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.3rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #1b6ec2;
+        box-shadow: 0 0 5px rgba(27, 110, 194, 0.5);
+    }
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Button Styles */
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1b6ec2;
+    border-radius: 0.3rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+    animation: pulse 2s infinite; /* Pulse animation */
+    line-height: 1.5;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.btn-primary:hover {
+    background-color: #155a99;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+    background-color: #1b6ec2;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect for the footer */
+}
+
+/* Shadows and Borders */
+.box-shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Style for Lottie Animation Container */
+#file-security-animation {
+    width: 200px; /* Adjust as needed */
+    height: 200px;
+    margin: 0 auto;
+}
+
+/* Style for SVG Animation */
+.animation-svg {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
 }
