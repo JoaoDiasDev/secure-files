@@ -51,7 +51,7 @@ namespace SecureFilesJoaoDias.Controllers
                 .SetStandardEncryption(
                     userPasswordBytes,
                     ownerPasswordBytes,
-                    EncryptionConstants.ALLOW_PRINTING,
+                    0,
                     EncryptionConstants.ENCRYPTION_AES_256
                 );
 
