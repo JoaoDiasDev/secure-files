@@ -1,26 +1,24 @@
 /* General Styles */
-html {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     color: #333;
-    margin: 0;
-    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
     position: relative;
 }
 
+/* Links */
 a {
     color: #0077cc;
     text-decoration: none;
@@ -37,12 +35,12 @@ body::before {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%;
-    height: 200%;
-    background: url('path/to/your/background-image.jpg') repeat; /* Set path to your background image */
+    width: 100%;
+    height: 100%;
+    background: url('path/to/your/background-image.jpg') repeat;
     z-index: -1;
-    animation: moveBackground 30s linear infinite; /* Moving background */
-    opacity: 0.2; /* Set opacity for a subtle effect */
+    animation: moveBackground 30s linear infinite;
+    opacity: 0.2;
 }
 
 @keyframes moveBackground {
@@ -177,21 +175,6 @@ label {
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
-
-/* Style for Lottie Animation Container */
-#file-security-animation {
-    width: 200px; /* Adjust as needed */
-    height: 200px;
-    margin: 0 auto;
-}
-
-/* Style for SVG Animation */
-.animation-svg {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 20px;
-}
-
 
 /* Responsive Enhancements */
 @media (max-width: 768px) {
