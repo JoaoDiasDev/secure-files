@@ -21,6 +21,12 @@ namespace SecureFilesJoaoDias.Controllers
                 return View("Index", model);
             }
 
+            if (!Path.GetExtension(model.PdfFile.FileName).Equals(".pdf", StringComparison.CurrentCultureIgnoreCase))
+            {
+                ModelState.AddModelError("", "Only PDF files are allowed.");
+                return View("Index", model);
+            }
+
             string inputFilePath = Path.Combine(Path.GetTempPath(), model.PdfFile.FileName);
             string outputFilePath = Path.Combine(Path.GetTempPath(), "secured_" + model.PdfFile.FileName);
 
@@ -29,7 +35,23 @@ namespace SecureFilesJoaoDias.Controllers
                 model.PdfFile.CopyTo(stream);
             }
 
-            SecurePdf(inputFilePath, outputFilePath, model.OwnerPassword, model.UserPassword);
+            try
+            {
+                if (!IsPdfEncrypted(inputFilePath))
+                {
+                    SecurePdf(inputFilePath, outputFilePath, model.OwnerPassword, model.UserPassword);
+                }
+                else
+                {
+                    ViewBag.IsAlreadySecured = true;
+                    return View("Index", model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+                return View("Index", model);
+            }
 
             var securedPdfBytes = System.IO.File.ReadAllBytes(outputFilePath);
             return File(securedPdfBytes, "application/pdf", "secured_" + model.PdfFile.FileName);
@@ -57,6 +79,12 @@ namespace SecureFilesJoaoDias.Controllers
 
             using PdfWriter pdfWriter = new(outputFile, writerProperties);
             using PdfDocument pdfDocument = new(pdfReader, pdfWriter);
+        }
+
+        private bool IsPdfEncrypted(string filePath)
+        {
+            using PdfReader pdfReader = new(filePath);
+            return pdfReader.IsEncrypted();
         }
 
     }
